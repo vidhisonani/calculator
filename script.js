@@ -15,7 +15,6 @@ buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.innerText;
 
-        // 1️⃣ Number or decimal
         if (!isNaN(value) || value === ".") {
             if (display.innerText === "0" || display.innerText === "") {
                 display.innerText = value;
@@ -24,7 +23,6 @@ buttons.forEach(button => {
             }
         }
 
-        // 2️⃣ Clear All
         else if (value === "AC") {
             display.innerText = "0";
             firstNumber = null;
@@ -33,7 +31,6 @@ buttons.forEach(button => {
             lastOperator = null;
         }
 
-        // 3️⃣ Delete last digit
         else if (value === "DE") {
             display.innerText = display.innerText.slice(0, -1);
             if (display.innerText === "") {
@@ -41,24 +38,16 @@ buttons.forEach(button => {
             }
         }
 
-        // 4️⃣ Percentage
         else if (value === "%") {
             display.innerText = Number(display.innerText) / 100;
         }
 
-        // 5️⃣ Plus/Minus toggle
-        else if (value === "+/-") {
-            display.innerText = String(Number(display.innerText) * -1);
-        }
-
-        // 6️⃣ Operators (+, -, ×, ÷)
         else if (["＋", "－", "×", "÷"].includes(value)) {
             firstNumber = Number(display.innerText); // Save first number
             currentOperator = value;                 // Save operator
             display.innerText = "0";                  // Clear display for next input
         }
 
-        // 7️⃣ Equals (=)
         else if (value === "＝") {
             let secondNumber;
             let operatorToUse;
@@ -99,3 +88,4 @@ buttons.forEach(button => {
         }
     });
 });
+
